@@ -1,9 +1,15 @@
-import numpy as np
 import tensorflow as tf
+import numpy as np
 
-def load_image(img_path):
-    image = tf.keras.preprocessing.image.load_img(img_path, target_size=(1920, 1080))  # 이미지 크기를 1920x1080으로 조정합니다
+def load_image(img_path, color_mode='rgb'):
+    image = tf.keras.preprocessing.image.load_img(img_path, color_mode=color_mode, target_size=(1920, 1080))
     image = tf.keras.preprocessing.image.img_to_array(image)
-    image = np.expand_dims(image, axis=0)
-    image = image / 255.0  # 이미지를 정규화합니다
     return image
+
+def determine_channels(image):
+    if image.shape[-1] == 1:
+        return 1
+    elif image.shape[-1] == 3:
+        return 3
+    else:
+        raise ValueError("Unsupported image format")
