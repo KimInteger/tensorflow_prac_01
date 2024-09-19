@@ -1,5 +1,3 @@
-# image_processor.py
-
 import cv2
 import numpy as np
 
@@ -8,6 +6,9 @@ def load_image(image_path):
     if image is None:
         print(f"Error: Image at {image_path} could not be loaded.")
     return image
+
+def resize_image(image, size=(256, 256)):
+    return cv2.resize(image, size)
 
 def crop_bbox(image, bbox):
     """
