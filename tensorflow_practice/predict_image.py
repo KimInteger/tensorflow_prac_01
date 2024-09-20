@@ -1,6 +1,6 @@
 import tensorflow as tf
 import numpy as np
-from tensorflow.keras.preprocessing import image
+import os
 from PIL import Image
 
 def preprocess_image(img_path):
@@ -40,6 +40,5 @@ def predict_image(model_path, img_path):
 # 실행 명령문 추가
 if __name__ == '__main__':
     model_path = 'my_model.keras'  # 저장된 모델 파일 경로
-    img_path = './image/test_predict_five.jpg'   # 예측할 이미지 파일 경로
+    img_path = os.path.join(os.path.dirname(__file__),"image","test_predict_five.jpg")   # 예측할 이미지 파일 경로
     predict_image(model_path, img_path)
-  
